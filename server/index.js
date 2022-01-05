@@ -5,7 +5,7 @@ import cors from "cors";
 import { config } from "dotenv";
 import postRoutes from "./routes/posts.js"; // We need to specify the extension js
 
-config();
+config(); // configuring env variables from dotenv
 
 const app = express();
 
@@ -14,6 +14,10 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors()); // this goes first than routes;
 
 app.use("/posts", postRoutes);
+
+app.get("/", (req, res) => {
+  console.log("hello to Memories API");
+});
 
 // using mongodb atlas version
 const CONNECTION_URL = process.env.MONGODB_REMOTE;
